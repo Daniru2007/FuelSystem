@@ -1,9 +1,10 @@
 import 'dotenv/config'; 
 import express from 'express';
+import app from './app.js';
 import connectDB from './server/config/db.js'; 
 
 
-const app = express();
+
 app.use(express.json());
 
 
