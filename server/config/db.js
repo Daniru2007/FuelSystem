@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const url = process.env.MONGO_URI;
+console.log(url)
 const client = new MongoClient(url);
 
 const dbName = 'fuelsystem'; 

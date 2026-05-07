@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/api/vehicles', vehicleRoutes);
 
+
 app.get('/', (req, res) => {
     res.send('Fuel System API is running...');
 });
