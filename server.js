@@ -1,4 +1,4 @@
-import 'dotenv/config'; // Shortcut to load .env immediately
+import 'dotenv/config'; 
 import express from 'express';
 import connectDB from './server/config/db.js'; 
 
