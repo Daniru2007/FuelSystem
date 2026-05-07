@@ -7,8 +7,6 @@ import connectDB from './server/config/db.js';
 
 app.use(express.json());
 
-
-
 const startServer = async () => {
     try {
         await connectDB(); 

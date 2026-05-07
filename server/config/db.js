@@ -1,7 +1,5 @@
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
-
-
 dotenv.config();
 
 const url = process.env.MONGO_URI;
@@ -9,7 +7,6 @@ const client = new MongoClient(url);
 
 const dbName = 'fuelsystem'; 
 let db;
-
 
 export default async function connectDB() {
     if (db) return db;
