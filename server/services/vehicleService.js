@@ -8,7 +8,7 @@ export const registerVehicle = async (vehicleData) => {
         const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo });
         if (existingVehicle) {
             return { error: "Vehicle with this registration number already exists" };
-        }
+        }else{
 
         const qrContent = `RegNo: ${vehicleData.regNo} | NIC: ${vehicleData.ownerNIC} | Fuel: ${vehicleData.fuelType}`;
         const generatedQR = await QRCode.toDataURL(qrContent);
@@ -20,6 +20,8 @@ export const registerVehicle = async (vehicleData) => {
         }
         const result = await db.collection('vehicles').insertOne(newVehicle);
         return {id: result.insertedId, qrCode: generatedQR};
+    
+    }
 }
 
 

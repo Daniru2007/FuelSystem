@@ -16,7 +16,7 @@ export default async function connectDB() {
         
         await client.connect();
         
-        console.log("✅ Connected to MongoDB Atlas (ES Modules)");
+        console.log("✅ Connected to MongoDB Atlas successfully!");
         db = client.db(dbName);
         return db;
     } catch (err) {

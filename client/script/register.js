@@ -21,6 +21,7 @@ function register() {
         firstName: document.getElementById("firstName").value.trim(),
         lastName: document.getElementById("lastName").value.trim(),
         ownerNIC: document.getElementById("ownerNIC").value.trim(),
+        vehicleType: document.getElementById("vehicleType").value,
         email: document.getElementById("email").value.trim()
     };
 
