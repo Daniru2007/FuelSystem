@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>Update Vehicle</title>
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family:
+                    "Inter",
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+            }
+
+            h2 {
+                color: #111;
+                font-size: 3.5rem;
+                letter-spacing: -1px;
+            }
+
+            p.text-muted {
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            label {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 0.6rem;
+                display: block;
+            }
+
+            .section-header {
+                font-size: 1rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: #888;
+                border-bottom: 2px solid #f0f0f0;
+                padding-bottom: 12px;
+                margin-bottom: 30px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .card {
+                border: none;
+                border-radius: 20px;
+                padding: 20px;
+            }
+
+            .card-body {
+                padding: 3rem !important;
+            }
+
+            .form-control,
+            .form-select {
+                border-radius: 12px;
+                font-size: 1.05rem;
+                padding: 14px 18px;
+                background-color: #fcfcfc;
+                border: 1px solid #dee2e6;
+                transition: all 0.2s ease;
+            }
+
+            .form-control:focus {
+                background-color: #fff;
+                box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+                border-color: #111;
+            }
+
+            .btn-dark {
+                border-radius: 12px;
+                padding: 16px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                background-color: #111;
+                margin-top: 20px;
+            }
+
+            .vr-line {
+                border-left: 2px solid #f0f0f0;
+                height: 100%;
+            }
+
+            @media screen and (max-width: 768px) {
+                .vr-line {
+                    border-left: none;
+                    border-top: 2px solid #f0f0f0;
+                    margin: 40px 0;
+                    padding-top: 20px;
+                }
+
+                h2 {
+                    font-size: 2.5rem;
+                }
+
+                .card-body {
+                    padding: 1.5rem !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">Update Vehicle</h2>
+                    <p class="text-muted">Search and Update Vehicles Here...</p>
+
+                    <div class="card shadow-sm" id="registerTab">
+                        <div class="card-body p-4">
+                            <form id="registrationForm">
+                                <div class="row">
+                                    <div class="col-md-6 pe-md-4">
+                                        <div
+                                            class="section-header"
+                                            style="font-size: 1.5rem"
+                                        >
+                                            Vehicle Details
+                                            <img
+                                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNhci1pY29uIGx1Y2lkZS1jYXIiPjxwYXRoIGQ9Ik0xOSAxN2gyYy42IDAgMS0uNCAxLTF2LTNjMC0uOS0uNy0xLjctMS41LTEuOUMxOC43IDEwLjYgMTYgMTAgMTYgMTBzLTEuMy0xLjQtMi4yLTIuM2MtLjUtLjQtMS4xLS43LTEuOC0uN0g1Yy0uNiAwLTEuMS40LTEuNC45bC0xLjQgMi45QTMuNyAzLjcgMCAwIDAgMiAxMnY0YzAgLjYuNCAxIDEgMWgyIi8+PGNpcmNsZSBjeD0iNyIgY3k9IjE3IiByPSIyIi8+PHBhdGggZD0iTTkgMTdoNiIvPjxjaXJjbGUgY3g9IjE3IiBjeT0iMTciIHI9IjIiLz48L3N2Zz4="
+                                                alt=""
+                                                style
+                                            />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label
+                                                class="form-label fw-medium small"
+                                                >Registration Number</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                name="regNo"
+                                                placeholder="ABC-1234"
+                                                required
+                                                id="regNo"
+                                            />
+                                        </div>
+
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6">
+                                                <label
+                                                    class="form-label fw-medium small"
+                                                    >Vehicle Type</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="vehicleType"
+                                                    class="form-control"
+                                                    name="vehicleType"
+                                                    placeholder="Car / Bike"
+                                                    required
+                                                />
+                                            </div>
+                                            <div class="col-6">
+                                                <label
+                                                    class="form-label fw-medium small"
+                                                    >Vehicle Model</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="model"
+                                                    class="form-control"
+                                                    name="vehicleModel"
+                                                    placeholder="Toyota Vitz"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label
+                                                class="form-label fw-medium small"
+                                                >Fuel Type</label
+                                            >
+                                            <select
+                                                class="form-select"
+                                                name="fuelType"
+                                                id="fuelType"
+                                                required
+                                            >
+                                                <option
+                                                    value=""
+                                                    disabled
+                                                    selected
+                                                >
+                                                    Select fuel type
+                                                </option>
+                                                <option value="Petrol">
+                                                    Petrol
+                                                </option>
+                                                <option value="Diesel">
+                                                    Diesel
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label
+                                                class="form-label fw-medium small"
+                                                >Nearest Station</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                name="nearStation"
+                                                id="station"
+                                                placeholder="Colombo City Fuel"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ps-md-4 vr-line">
+                                        <div
+                                            class="section-header"
+                                            style="font-size: 1.5rem"
+                                        >
+                                            Owner Details
+                                            <img
+                                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXItaWNvbiBsdWNpZGUtdXNlciI+PHBhdGggZD0iTTE5IDIxdi0yYTQgNCAwIDAgMC00LTRIOWE0IDQgMCAwIDAtNCA0djIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiLz48L3N2Zz4="
+                                                alt=""
+                                            />
+                                        </div>
+
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6">
+                                                <label
+                                                    class="form-label fw-medium small"
+                                                    >First Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="firstName"
+                                                    class="form-control"
+                                                    name="firstName"
+                                                    placeholder="Kamal"
+                                                    required
+                                                />
+                                            </div>
+                                            <div class="col-6">
+                                                <label
+                                                    class="form-label fw-medium small"
+                                                    >Last Name</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="lastName"
+                                                    class="form-control"
+                                                    name="lastName"
+                                                    placeholder="Perera"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label
+                                                class="form-label fw-medium small"
+                                                >Owner NIC</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="ownerNIC"
+                                                class="form-control"
+                                                name="ownerNIC"
+                                                placeholder="123456789V"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label
+                                                class="form-label fw-medium small"
+                                                >Email Address</label
+                                            >
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                class="form-control"
+                                                name="email"
+                                                placeholder="kamal@gmail.com"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-dark w-100"
+                                        onclick="register()"
+                                    >
+                                        Register Vehicle
+                                        <img
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZpbGUtcGx1cy1pY29uIGx1Y2lkZS1maWxlLXBsdXMiPjxwYXRoIGQ9Ik02IDIyYTIgMiAwIDAgMS0yLTJWNGEyIDIgMCAwIDEgMi0yaDhhMi40IDIuNCAwIDAgMSAxLjcwNC43MDZsMy41ODggMy41ODhBMi40IDIuNCAwIDAgMSAyMCA4djEyYTIgMiAwIDAgMS0yIDJ6Ii8+PHBhdGggZD0iTTE0IDJ2NWExIDEgMCAwIDAgMSAxaDUiLz48cGF0aCBkPSJNOSAxNWg2Ii8+PHBhdGggZD0iTTEyIDE4di02Ii8+PC9zdmc+"
+                                            alt=""
+                                            style="filter: invert(5)"
+                                        />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
