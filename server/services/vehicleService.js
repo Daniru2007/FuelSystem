@@ -2,52 +2,39 @@ import QRCode from 'qrcode';
 import connectDB from '../config/db.js';
 import { ObjectId } from 'mongodb';
 
-export const registerVehicle = async (vehicleData) => {
-  
-        const db = await connectDB();
-        const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo });
-        if (existingVehicle) {
-            return { error: "Vehicle with this registration number already exists" };
-        }else{
-
-        const qrContent = `RegNo: ${vehicleData.regNo} | NIC: ${vehicleData.ownerNIC} | Fuel: ${vehicleData.fuelType}`;
-        const generatedQR = await QRCode.toDataURL(qrContent);
-
-        const newVehicle = {
-           ...vehicleData,
-            qrCode: generatedQR,
-            createdAt: new Date()
-        }
-        const result = await db.collection('vehicles').insertOne(newVehicle);
-        return {id: result.insertedId, qrCode: generatedQR};
+export const registerVehicle = async (data) => {
+    const db = await connectDB();
+    const exists = await db.collection('vehicles').findOne({ regNo: data.regNo });
+    if (exists) return { error: 'RegNo exists' };
     
-    }
-}
+    const qr = await QRCode.toDataURL(`RegNo: ${data.regNo} | NIC: ${data.ownerNIC}`);
+    const result = await db.collection('vehicles').insertOne({ ...data, qrCode: qr, createdAt: new Date() });
+    return { id: result.insertedId, qrCode: qr };
+};
 
-
-export async function getQRCodeByRegNo(regNo) {
+export const getQRCodeByRegNo = async (regNo) => {
     const db = await connectDB();
-    const vehicle = await db.collection('vehicles').findOne({ regNo });
-    if (!vehicle) {
-        return { error: "Vehicle not found", status: 404 };
-    }
+    const v = await db.collection('vehicles').findOne({ regNo });
+    return v ? { qrCode: v.qrCode, _id: v._id } : { error: 'Not found', status: 404 };
+};
 
-    return { qrCode: vehicle.qrCode, _id: vehicle._id };
-}
-
-
-
-export async function getVehicleById(id) {
+export const searchByNIC = async (nic) => {
     const db = await connectDB();
-    if (!ObjectId.isValid(id)) {
-        return { error: "Invalid vehicle ID", status: 400 };
-    }
-    const vehicle = await db.collection('vehicles').findOne({ _id: new ObjectId(id) });
-    if (!vehicle) {
-        return { error: "Vehicle not found", status: 404 };
-    }
+    const v = await db.collection('vehicles').find({ ownerNIC: nic }).toArray();
+    return v.length > 0 ? v : { error: 'Not found', status: 404 };
+};
 
-    return vehicle;
-}
+export const searchByRegNo = async (regNo) => {
+    const db = await connectDB();
+    const v = await db.collection('vehicles').findOne({ regNo });
+    return v ? v : { error: 'Not found', status: 404 };
+};
+
+export const getVehicleById = async (id) => {
+    const db = await connectDB();
+    if (!ObjectId.isValid(id)) return { error: 'Invalid ID', status: 400 };
+    const v = await db.collection('vehicles').findOne({ _id: new ObjectId(id) });
+    return v ? v : { error: 'Not found', status: 404 };
+};
 
 

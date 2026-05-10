@@ -124,10 +124,15 @@
 
                 <div class="text-center mb-4">
                     <h2 class="fw-bold">Vehicle Registration</h2>
-                    <p class="text-muted">Fill in both vehicle and owner information to proceed.</p>
+                    <p class="text-muted">Register or search vehicles here</p>
                 </div>
 
-                <div class="card shadow-sm">
+                <div class="mb-3 text-center">
+                    <button class="btn btn-outline-dark me-2" onclick="showTab('register')">Register</button>
+                    <button class="btn btn-outline-dark" onclick="showTab('search')">Search</button>
+                </div>
+
+                <div class="card shadow-sm" id="registerTab">
                     <div class="card-body p-4">
                         <form id="registrationForm">
                             <div class="row">
@@ -215,6 +220,26 @@
                                         alt="" style="filter: invert(5);"></button>
                             </div>
                         </form>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm" id="searchTab" style="display: none;">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <label>Search by NIC</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="searchNIC" placeholder="123456789V">
+                                <button class="btn btn-dark" onclick="search('nic')">Search</button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Search by RegNo</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="searchRegNo" placeholder="ABC-1234">
+                                <button class="btn btn-dark" onclick="search('regno')">Search</button>
+                            </div>
+                        </div>
+                        <div id="results"></div>
                     </div>
                 </div>
 
