@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function register() {
+    const button = document.getElementById("register-btn");
+    
 
     const regNoInput = document.getElementById("regNo").value.trim();
     
@@ -29,7 +31,10 @@ function register() {
     for (const key in formData) {
         if (!formData[key]) {
             showToast("Please fill in all fields!", "danger");
+            
             return;
+        }else{
+            button.disabled = false;
         }
     }
 
@@ -66,3 +71,4 @@ function showToast(message, type) {
         bsToast.show();
     }
 }
+

@@ -5,9 +5,15 @@ import { ObjectId } from 'mongodb';
 export const registerVehicle = async (vehicleData) => {
   
         const db = await connectDB();
-        const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo });
+        const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo});
+        const existingNIC = await db.collection('vehicles').findOne({ ownerNIC: vehicleData.ownerNIC});
+
+        if (existingNIC) {
+            return { error: "A vehicle with this owner NIC already exists" };
+        }
         if (existingVehicle) {
             return { error: "Vehicle with this registration number already exists" };
+         
         }else{
 
         const qrContent = `RegNo: ${vehicleData.regNo} | NIC: ${vehicleData.ownerNIC} | Fuel: ${vehicleData.fuelType}`;

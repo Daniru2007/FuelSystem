@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(result => {
                 const data = result.data; 
-
-
-              
                 console.log('QR Content:', data);
                 const qrContent = JSON.stringify({
                     
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Error: ' + error.message);
             });
     } else {
-        alert('No registration number found in URL. Use ?id=ABC-1234');
+        // window.location.href = '../pages/registerPage.html';
     }
 
         document.getElementById('downloadBtn').addEventListener('click', () => downloadQRCode(vehicleId));
