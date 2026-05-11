@@ -70,12 +70,13 @@ function setDetails(objectId){
         if (!response.ok) throw new Error('Vehicle not found');
         return response.json();
     })
-    .then(data => {
+    .then(result => {
+        const data = result.data || result;
         console.log('Vehicle Details:', data);
         document.getElementById('ownerNIC').textContent = data.ownerNIC || 'N/A';
-        document.getElementById('vehicleNumber').textContent = data.regNo || data.vehicleNumber;
-        document.getElementById('vehicleType').textContent = data.vehicleType || data.type;
-        document.getElementById('fuelType').textContent = data.fuelType;
+        document.getElementById('vehicleNumber').textContent = data.regNo || 'N/A';
+        document.getElementById('vehicleType').textContent = data.vehicleType || 'N/A';
+        document.getElementById('fuelType').textContent = data.fuelType || 'N/A';
     })
     .catch(error => {
         console.error('Error fetching vehicle details:', error);

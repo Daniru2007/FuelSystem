@@ -10,11 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function register() {
-    const button = document.getElementById("register-btn");
-    
-
     const regNoInput = document.getElementById("regNo").value.trim();
     
+
     const formData = {
         regNo: regNoInput,
         fuelType: document.getElementById("fuelType").value,
@@ -27,16 +25,15 @@ function register() {
         email: document.getElementById("email").value.trim()
     };
 
-    // Validation
+    
     for (const key in formData) {
         if (!formData[key]) {
+            console.log("yeas")
             showToast("Please fill in all fields!", "danger");
-            
             return;
-        }else{
-            button.disabled = false;
         }
     }
+
 
     $.ajax({
         url: "http://localhost:3000/api/vehicles/register",
@@ -44,15 +41,16 @@ function register() {
         contentType: "application/json",
         data: JSON.stringify(formData), 
         success: function(response) {
+            console.log("Registration successful:", response);
             showToast("Registration successful!", "success");
 
-         
             setTimeout(() => {
                 window.location.href = `../pages/QRcodePage.html?id=${regNoInput}`;
             }, 1500); 
         },
         error: function(xhr) {
-            const errorMsg = xhr.responseJSON ? xhr.responseJSON.message : "Registration failed!";
+            console.log("Registration failed:", xhr.responseJSON);
+            const errorMsg = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : "Registration failed. Please try again.";
             showToast(errorMsg, "danger");
         }
     });
@@ -60,15 +58,16 @@ function register() {
 
 function showToast(message, type) {
     const toastEl = document.getElementById('regToast');
-    const toastMessage = document.getElementById('toastMessage');
+    const toastContent = document.getElementById('toastContent'); 
 
-    if (toastEl && toastMessage) {
-        toastMessage.textContent = message;
-        toastEl.classList.remove('bg-dark', 'bg-success', 'bg-danger');
-        toastEl.classList.add(`bg-${type}`);
+    if (toastEl && toastContent) {
+        toastContent.textContent = message;
+        
+    
+        toastEl.classList.remove('bg-success', 'bg-danger', 'text-white');
+        toastEl.classList.add(`bg-${type}`, 'text-white');
 
         const bsToast = new bootstrap.Toast(toastEl);
         bsToast.show();
     }
 }
-
