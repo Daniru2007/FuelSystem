@@ -28,17 +28,38 @@
                 </div>
 
                 <ul class="list-group details-list">
-                    <li class="list-group-item"><strong>Owner NIC:</strong> <span id="ownerNIC">Loading...</span></li>
-                    <li class="list-group-item"><strong>Vehicle No:</strong> <span id="vehicleNumber">Loading...</span></li>
-                    <li class="list-group-item"><strong>Type:</strong> <span id="vehicleType">Loading...</span></li>
-                    <li class="list-group-item"><strong>Fuel Type:</strong> <span id="fuelType">Loading...</span></li>
-                </ul>
+    <li class="list-group-item">
+        <strong>Owner NIC:</strong> 
+        <span id="ownerNIC">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+        </span>
+    </li>
+    <li class="list-group-item">
+        <strong>Vehicle No:</strong> 
+        <span id="vehicleNumber">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+        </span>
+    </li>
+    <li class="list-group-item">
+        <strong>Type:</strong> 
+        <span id="vehicleType">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+        </span>
+    </li>
+    <li class="list-group-item">
+        <strong>Fuel Type:</strong> 
+        <span id="fuelType">
+            <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+        </span>
+    </li>
+</ul>
                 
-                <div class="mt-4 text-center">
-                    <button class="btn btn-dark btn-sm rounded-3 me-2" id="downloadBtn">
+                <div class="mt-4 text-center d-flex justify-content-center gap-5">
+                    <button class="btn btn-dark btn-md rounded-3 me-2" id="downloadBtn">
         Download QR Pass <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWltYWdlLWRvd24taWNvbiBsdWNpZGUtaW1hZ2UtZG93biI+PHBhdGggZD0iTTEwLjMgMjFINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmgxNGEyIDIgMCAwIDEgMiAydjEwbC0zLjEtMy4xYTIgMiAwIDAgMC0yLjgxNC4wMTRMNiAyMSIvPjxwYXRoIGQ9Im0xNCAxOSAzIDN2LTUuNSIvPjxwYXRoIGQ9Im0xNyAyMiAzLTMiLz48Y2lyY2xlIGN4PSI5IiBjeT0iOSIgcj0iMiIvPjwvc3ZnPg==" alt="" style="width: 16px; height: 16px; margin-left: 5px; filter: invert(1);"></button  >
     </button>
-                    <button class="btn btn-outline-dark btn-sm" onclick="printQRCode()">Print QR Code</button>
+                    <button class="btn btn-outline-dark btn-md" onclick="printQRCode()">Print QR Code <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXByaW50ZXItaWNvbiBsdWNpZGUtcHJpbnRlciI+PHBhdGggZD0iTTYgMThINGEyIDIgMCAwIDEtMi0ydi01YTIgMiAwIDAgMSAyLTJoMTZhMiAyIDAgMCAxIDIgMnY1YTIgMiAwIDAgMS0yIDJoLTIiLz48cGF0aCBkPSJNNiA5VjNhMSAxIDAgMCAxIDEtMWgxMGExIDEgMCAwIDEgMSAxdjYiLz48cmVjdCB4PSI2IiB5PSIxNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgiIHJ4PSIxIi8+PC9zdmc+" alt=""></button>
+                    </button>
                 </div>
             </div>
         </div>

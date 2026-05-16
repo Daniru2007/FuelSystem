@@ -2,21 +2,38 @@ import QRCode from "qrcode";
 import connectDB from "../config/db.js";
 import { ObjectId } from "mongodb";
 
-export const registerVehicle = async (data) => {
-    const db = await connectDB();
-    const exists = await db
-        .collection("vehicles")
-        .findOne({ regNo: data.regNo });
-    if (exists) return { error: "RegNo exists" };
 
-    const qr = await QRCode.toDataURL(
-        `RegNo: ${data.regNo} | NIC: ${data.ownerNIC}`,
-    );
-    const result = await db
-        .collection("vehicles")
-        .insertOne({ ...data, qrCode: qr, createdAt: new Date() });
-    return { id: result.insertedId, qrCode: qr };
-};
+export const registerVehicle = async (vehicleData) => {
+  
+        const db = await connectDB();
+        const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo});
+        const existingNIC = await db.collection('vehicles').findOne({ ownerNIC: vehicleData.ownerNIC});
+
+        if (existingNIC) {
+            return { error: "A vehicle with this owner NIC already exists" };
+        }
+        if (existingVehicle) {
+            return { error: "Vehicle with this registration number already exists" };
+         
+        }else{
+
+        const qrContent = `RegNo: ${vehicleData.regNo} | NIC: ${vehicleData.ownerNIC} | Fuel: ${vehicleData.fuelType}`;
+        const generatedQR = await QRCode.toDataURL(qrContent);
+
+        const newVehicle = {
+           ...vehicleData,
+            qrCode: generatedQR,
+            createdAt: new Date()
+        }
+        const result = await db.collection('vehicles').insertOne(newVehicle);
+        return {id: result.insertedId, qrCode: generatedQR};
+    
+    }
+}
+
+
+
+
 
 export const getQRCodeByRegNo = async (regNo) => {
     const db = await connectDB();
