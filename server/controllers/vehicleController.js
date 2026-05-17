@@ -23,3 +23,13 @@ export const searchByRegNo = (req, res) =>
     handle((p) => VehicleService.searchByRegNo(p.regNo), req, res);
 export const updateByNIC = (req, res) =>
     handle((p) => VehicleService.updateByNIC(p.nic, req.body), req, res);
+export const findNearestStation = (req, res) =>
+    handle(
+        (p) =>
+            VehicleService.findNearestStation(
+                Number(p.longitude),
+                Number(p.latitude),
+            ),
+        req,
+        res,
+    );
