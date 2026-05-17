@@ -8,7 +8,14 @@ export const registerVehicle = async (vehicleData) => {
         const db = await connectDB();
         const existingVehicle = await db.collection('vehicles').findOne({ regNo: vehicleData.regNo});
         const existingNIC = await db.collection('vehicles').findOne({ ownerNIC: vehicleData.ownerNIC});
+        const numberPart = vehicleData.ownerNIC.substring(0, 9);
+        const lastLetter = vehicleData.ownerNIC.slice(-1).toUpperCase();
+        
 
+   const validateNIC = !isNaN(numberPart) && numberPart.length === 9 &&  (lastLetter === "V" || lastLetter === "X");
+        if (!validateNIC) {
+            return { error: "Invalid NIC format." };
+        }
         if (existingNIC) {
             return { error: "A vehicle with this owner NIC already exists" };
         }
