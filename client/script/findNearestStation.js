@@ -16,6 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     longitudeInput.value = longitude;
                     latitudeInput.value = latitude;
 
+                    // show map centered on current location
+                    const mapFrame = document.getElementById("mapFrame");
+                    const mapContainer =
+                        document.getElementById("mapContainer");
+                    if (mapFrame && mapContainer) {
+                        mapFrame.src = `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
+                        mapContainer.style.display = "block";
+                    }
+
                     gpsButton.disabled = false;
                     gpsButton.textContent = "Get Current Location (GPS)";
                 },
@@ -67,7 +76,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("stationCoords").textContent =
                         `${station.location.coordinates[0]}, ${station.location.coordinates[1]}`;
 
+                    // show result and map centered on station
                     stationResult.style.display = "block";
+                    const mapFrame = document.getElementById("mapFrame");
+                    const mapContainer =
+                        document.getElementById("mapContainer");
+                    if (
+                        mapFrame &&
+                        mapContainer &&
+                        station.location &&
+                        station.location.coordinates
+                    ) {
+                        const lon = station.location.coordinates[0];
+                        const lat = station.location.coordinates[1];
+                        mapFrame.src = `https://www.google.com/maps?q=${lat},${lon}&z=16&output=embed`;
+                        mapContainer.style.display = "block";
+                    }
                 } else {
                     alert(
                         "No station found. Please try different coordinates.",
